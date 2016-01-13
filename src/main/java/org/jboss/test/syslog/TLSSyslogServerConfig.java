@@ -19,8 +19,9 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.as.test.integration.logging.syslogserve;
+package org.jboss.test.syslog;
 
+import org.productivity.java.syslog4j.server.SyslogServerIF;
 import org.productivity.java.syslog4j.server.impl.net.tcp.ssl.SSLTCPNetSyslogServerConfig;
 
 /**
@@ -30,9 +31,11 @@ import org.productivity.java.syslog4j.server.impl.net.tcp.ssl.SSLTCPNetSyslogSer
  */
 public class TLSSyslogServerConfig extends SSLTCPNetSyslogServerConfig {
 
-    @Override
-    public Class getSyslogServerClass() {
-        return TLSSyslogServer.class;
-    }
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public Class<? extends SyslogServerIF> getSyslogServerClass() {
+		return TLSSyslogServer.class;
+	}
 
 }

@@ -19,45 +19,22 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.as.test.integration.logging.syslogserve;
+package org.jboss.test.syslog;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.util.Collections;
-
-import org.productivity.java.syslog4j.server.impl.net.tcp.TCPNetSyslogServer;
+import org.productivity.java.syslog4j.server.SyslogServerIF;
+import org.productivity.java.syslog4j.server.impl.net.tcp.TCPNetSyslogServerConfig;
 
 /**
- * Syslog4j server for TCP protocol implementation.
+ * Configuration class for {@link TCPSyslogServer}.
  *
  * @author Josef Cacek
  */
-public class TCPSyslogServer extends TCPNetSyslogServer {
+public class TCPSyslogServerConfig extends TCPNetSyslogServerConfig {
 
-  @SuppressWarnings("unchecked")
-  public TCPSyslogServer() {
-    sockets = Collections.synchronizedSet(sockets);
-  }
+	private static final long serialVersionUID = 1L;
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public void run() {
-    try {
-      System.out.println("Creating Syslog server socket");
-      this.serverSocket = createServerSocket();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    while (!this.shutdown) {
-      try {
-        final Socket socket = this.serverSocket.accept();
-        System.out.println("Handling Syslog client " + socket.getInetAddress());
-        new Thread(new TCPSyslogSocketHandler(this.sockets, this, socket)).start();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-  }
-
+	@Override
+	public Class<? extends SyslogServerIF> getSyslogServerClass() {
+		return TCPSyslogServer.class;
+	}
 }
