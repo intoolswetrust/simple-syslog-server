@@ -21,7 +21,6 @@
  */
 package org.jboss.test.syslog;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import org.productivity.java.syslog4j.SyslogRuntimeException;
@@ -69,13 +68,14 @@ public class Server {
 			System.exit(1);
 		}
 		config.setUseStructuredData(true);
-		config.setHost(InetAddress.getByName(null).getHostAddress());
+//		config.setHost(InetAddress.getByName(null).getHostAddress());
+		config.setHost("0.0.0.0");
 		config.setPort(SYSLOG_PORT);
 
-		System.out.println("Starting Syslog server");
-		System.out.println("Protocol: " + syslogProtocol);
-		System.out.println("Host:     " + config.getHost());
-		System.out.println("Port:     " + config.getPort());
+		System.out.println("Starting Simple Syslog Server");
+		System.out.println("Protocol:     " + syslogProtocol);
+		System.out.println("Bind address: " + config.getHost());
+		System.out.println("Port:         " + config.getPort());
 
 		// start syslog server
 		SyslogServer.createThreadedInstance(syslogProtocol, config);
