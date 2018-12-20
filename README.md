@@ -25,7 +25,7 @@ Console then contain output similar to:
 ```
 Simple syslog server (RFC-5424)
 Usage:
-  java -jar syslog-server.jar [protocol]
+  java -jar simple-syslog-server.jar [protocol]
 
 Possible protocols: udp, tcp, tls
 

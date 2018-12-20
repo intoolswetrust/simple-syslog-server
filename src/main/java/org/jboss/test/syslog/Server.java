@@ -51,7 +51,7 @@ public class Server {
 		String syslogProtocol = "tls";
 		System.out.println("Simple syslog server (RFC-5424)");
 		System.out.println("Usage:");
-		System.out.println("  java -jar syslog-server.jar [protocol]");
+		System.out.println("  java -jar simple-syslog-server.jar [protocol]");
 		System.out.println();
 		System.out.println("Possible protocols: udp, tcp, tls");
 		System.out.println();
