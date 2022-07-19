@@ -40,6 +40,23 @@ Handling Syslog client /10.40.4.198
 >>> Syslog message came: Rfc5424SyslogEvent [prioVersion=<12>1, facility=1, level=4, version=1, timestamp=2014-010-22T12:15:52.039+02:00, host=my-nb, appName=Test, procId=11119, msgId=-, structuredData=-, message=Message two]
 ```
 
+## Testing
+
+The format of Syslog messages is specified by the [RFC-5424](https://datatracker.ietf.org/doc/html/rfc5424)
+
+To test the syslog server, you can either use the `logger` Linux command:
+
+```bash
+logger --tcp -n localhost -P 9898 "Test message"
+```
+
+or try directly one of example messages specified in the RFC:
+
+```bash
+nc -w0 localhost 9898 <<< "<34>1 2003-10-11T22:14:15.003Z mymachine.example.com su - ID47 - BOM'su root' failed for lonvick on /dev/pts/8"
+```
+
+
 ## License
 
 * [GNU Lesser General Public License Version 2.1](http://www.gnu.org/licenses/lgpl-2.1-standalone.html)
